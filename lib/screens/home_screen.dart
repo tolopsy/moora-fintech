@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:moora_ui/constants/color_constants.dart';
+import 'package:moora_ui/models/card_models.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -41,7 +44,136 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Hero section with welcome message and virtual card displayed
-            
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+                padding: EdgeInsets.only(left: 16, bottom: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Welcome Back",
+                      style: GoogleFonts.inter(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: kBlackColor),
+                    ),
+                    Text("Lanre Tolu",
+                        style: GoogleFonts.inter(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                            color: kBlackColor))
+                  ],
+                )),
+
+            Container(
+              height: 200,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(left: 16, right: 6),
+                itemCount: cards.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 200,
+                    width: 350,
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(28),
+                        color: Color(cards[index].cardBackground)),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          child: SvgPicture.asset(cards[index].cardElementTop),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child:
+                              SvgPicture.asset(cards[index].cardElementBottom),
+                        ),
+                        Positioned(
+                          top: 45,
+                          left: 30,
+                          child: Text(
+                            "CARD NUMBER",
+                            style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: kWhiteColor),
+                          ),
+                        ),
+                        Positioned(
+                          top: 62,
+                          left: 30,
+                          child: Text(
+                            cards[index].cardNumber,
+                            style: GoogleFonts.inter(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: kWhiteColor),
+                          ),
+                        ),
+                        Positioned(
+                          right: 30,
+                          top: 32,
+                          child: Image.asset(cards[index].cardType,
+                              width: 28, height: 28),
+                        ),
+                        Positioned(
+                          left: 30,
+                          bottom: 45,
+                          child: Text(
+                            "HOLDER'S NAME",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 30,
+                          bottom: 22,
+                          child: Text(
+                            cards[index].user,
+                            style: GoogleFonts.inter(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 208,
+                          bottom: 45,
+                          child: Text(
+                            "EXPIRY DATE",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 208,
+                          bottom: 22,
+                          child: Text(
+                            cards[index].cardExpired,
+                            style: GoogleFonts.inter(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: kWhiteColor,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),

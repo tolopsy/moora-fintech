@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moora_ui/constants/color_constants.dart';
 import 'package:moora_ui/models/card_models.dart';
+import 'package:moora_ui/models/operation_models.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,6 +11,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int currentSlider = 0;
+
+  List<T> operationsMap<T>(List operationList, Function handler) {
+    List<T> operations = [];
+    for (var i = 0; i < operationList.length; i++) {
+      operations.add(handler(i, operationList[i]));
+    }
+
+    return operations;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           right: 30,
                           top: 32,
                           child: Image.asset(cards[index].cardType,
-                              width: 28, height: 28),
+                              width: 30, height: 30),
                         ),
                         Positioned(
                           left: 30,
@@ -173,7 +185,44 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-            )
+            ),
+
+            // Operations section
+            Padding(
+                padding: EdgeInsets.only(
+                  left: 16,
+                  top: 26,
+                  bottom: 10,
+                  right: 9
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Operation",
+                      style: GoogleFonts.inter(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Row(
+                      children:
+                          operationsMap(operations, (index, activeOperation) {
+                        return Container(
+                          alignment: Alignment.centerLeft,
+                          height: 9,
+                          width: 9,
+                          margin: EdgeInsets.only(right: 7),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentSlider == index
+                                  ? kBlueColor
+                                  : kTwentyBlueColor),
+                        );
+                      }),
+                    )
+                  ],
+                )),
           ],
         ),
       ),

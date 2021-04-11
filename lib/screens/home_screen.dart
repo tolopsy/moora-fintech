@@ -29,13 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: EdgeInsets.only(top: 24),
         child: ListView(
           physics: ClampingScrollPhysics(),
-          children: [
+          children: <Widget>[
             // AppBar holds the menu icon and user avatar
             Container(
               margin: EdgeInsets.only(left: 16, right: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   GestureDetector(
                     onTap: () {
                       print("Menu tapped");
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.only(left: 16, bottom: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       "Welcome Back",
                       style: GoogleFonts.inter(
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(28),
                         color: Color(cards[index].cardBackground)),
                     child: Stack(
-                      children: [
+                      children: <Widget>[
                         Positioned(
                           child: SvgPicture.asset(cards[index].cardElementTop),
                         ),
@@ -189,15 +189,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Operations section
             Padding(
-                padding: EdgeInsets.only(
-                  left: 16,
-                  top: 26,
-                  bottom: 10,
-                  right: 9
-                ),
+                padding:
+                    EdgeInsets.only(left: 16, top: 26, bottom: 10, right: 9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     Text(
                       "Operation",
                       style: GoogleFonts.inter(
@@ -207,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Row(
                       children:
-                          operationsMap(operations, (index, activeOperation) {
+                          operationsMap<Widget>(operations, (index, activeOperation) {
                         return Container(
                           alignment: Alignment.centerLeft,
                           height: 9,
@@ -223,6 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 )),
+
           ],
         ),
       ),

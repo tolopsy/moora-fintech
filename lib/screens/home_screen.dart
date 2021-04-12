@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentSlider = 0;
+  int currentOperation = 0;
 
   List<T> operationsMap<T>(List operationList, Function handler) {
     List<T> operations = [];
@@ -202,8 +202,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Row(
-                      children:
-                          operationsMap<Widget>(operations, (index, activeOperation) {
+                      children: operationsMap<Widget>(operations,
+                          (index, activeOperation) {
                         return Container(
                           alignment: Alignment.centerLeft,
                           height: 9,
@@ -211,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: EdgeInsets.only(right: 7),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: currentSlider == index
+                              color: currentOperation == index
                                   ? kBlueColor
                                   : kTwentyBlueColor),
                         );
@@ -220,9 +220,87 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 )),
 
+            Container(
+              height: 120,
+              child: ListView.builder(
+                itemCount: operations.length,
+                padding: EdgeInsets.only(left: 16),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        currentOperation = index;
+                      });
+                    },
+                    child: OperationCard(
+                        operations[index].name,
+                        operations[index].selectedIcon,
+                        operations[index].unselectedIcon,
+                        currentOperation == index,
+                        this),
+                  );
+                },
+              ),
+            ),
+
+            
           ],
         ),
       ),
     );
+  }
+}
+
+class OperationCard extends StatefulWidget {
+  final String operation;
+  final String selectedIcon;
+  final String unselectedIcon;
+  final bool isSelected;
+  final _HomeScreenState context;
+
+  OperationCard(this.operation, this.selectedIcon, this.unselectedIcon,
+      this.isSelected, this.context);
+
+  @override
+  _OperationCardState createState() => _OperationCardState();
+}
+
+class _OperationCardState extends State<OperationCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(right: 16),
+        width: 120,
+        height: 120,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: kTenBlackColor,
+                blurRadius: 10,
+                spreadRadius: 5,
+                offset: Offset(8.0, 8.0))
+          ],
+          borderRadius: BorderRadius.circular(10),
+          color: widget.isSelected ? kBlueColor : kWhiteColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SvgPicture.asset(widget.isSelected
+                ? widget.selectedIcon
+                : widget.unselectedIcon),
+            SizedBox(
+              height: 10,
+            ),
+            Text(widget.operation,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: widget.isSelected ? kWhiteColor : kBlueColor))
+          ],
+        ));
   }
 }

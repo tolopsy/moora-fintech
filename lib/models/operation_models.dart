@@ -19,8 +19,8 @@ var operationsData = [
   },
   {
     "name": 'Insight\nTracking',
-    "selectedIcon": 'assets/images/track_finance_blue.svg',
-    "unselectedIcon": 'assets/images/track_finance_white.svg',
+    "selectedIcon": 'assets/images/track_finance_white.svg',
+    "unselectedIcon": 'assets/images/track_finance_blue.svg',
   },
 ];
 

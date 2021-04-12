@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moora_ui/constants/color_constants.dart';
 import 'package:moora_ui/models/card_models.dart';
 import 'package:moora_ui/models/operation_models.dart';
+import 'package:moora_ui/models/transaction_models.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -244,7 +245,41 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            
+            // Transaction History
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 16, top: 26, bottom: 10, right: 10),
+              child: Text(
+                "Transaction History",
+                style: GoogleFonts.inter(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListView.builder(
+              itemCount: transactions.length,
+              padding: EdgeInsets.only(left: 16, right: 16),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(bottom: 15),
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                  height: 60,
+                  decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                            color: kTenBlackColor,
+                            blurRadius: 10,
+                            spreadRadius: 5,
+                            offset: Offset(7, 7))
+                      ]),
+                );
+              },
+            )
           ],
         ),
       ),

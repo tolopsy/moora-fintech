@@ -17,18 +17,18 @@ var transactionData = [
     "name": "Uber Ride",
     "photo": "assets/images/uber_logo.png",
     "date": "1st Apr 2020",
-    "amount": "-\$35.214"
+    "amount": "-\u20A6 4,500.00"
   },
   {
     "name": "Nike Outlet",
     "photo": "assets/images/nike_logo.png",
     "date": "30th Mar 2020",
-    "amount": "-\$100.00"
+    "amount": "-\u20A6 15,100.00"
   },
   {
-    "name": "Payment Received",
-    "photo": "assets/images/user_avatar.png",
+    "name": "Payment",
+    "photo": "assets/images/user_photo.png",
     "date": "15th Mar 2020",
-    "amount": "+\$250.00"
+    "amount": "+\u20A6 9,500.00"
   }
 ];

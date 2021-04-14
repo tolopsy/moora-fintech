@@ -81,15 +81,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 )),
 
             Container(
-              height: 200,
+              height: 180,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.only(left: 16, right: 6),
                 itemCount: cards.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 200,
-                    width: 350,
+                    height: 180,
+                    width: 330,
                     margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(28),
@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Positioned(
-                          left: 208,
+                          left: 190,
                           bottom: 45,
                           child: Text(
                             "EXPIRY DATE",
@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Positioned(
-                          left: 208,
+                          left: 190,
                           bottom: 22,
                           child: Text(
                             cards[index].cardExpired,
@@ -266,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(bottom: 15),
                   padding:
                       EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-                  height: 60,
+                  height: 80,
                   decoration: BoxDecoration(
                       color: kWhiteColor,
                       borderRadius: BorderRadius.circular(15),
@@ -276,6 +276,54 @@ class _HomeScreenState extends State<HomeScreen> {
                             blurRadius: 10,
                             spreadRadius: 5,
                             offset: Offset(7, 7))
+                      ]),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          transactions[index].photo))),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(transactions[index].name,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700,
+                                      color: kBlackColor,
+                                    )),
+                                Text(transactions[index].date,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: kGreyColor,
+                                    ))
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(transactions[index].amount,
+                                style: GoogleFonts.inter(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: kBlueColor,
+                                )),
+                          ],
+                        )
                       ]),
                 );
               },
